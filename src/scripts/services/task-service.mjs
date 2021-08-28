@@ -6,7 +6,7 @@ class TaskService {
       ),
     )
     const submatrixAreasMatrix = columnLengthsMatrix.map(
-      this.calcSubmatrixAreasCombination,
+      this.calcPossibleAreasCombination,
     )
     console.log(submatrixAreasMatrix)
   }
@@ -23,24 +23,34 @@ class TaskService {
     return columnLengths
   }
 
-  calcSubmatrixAreasCombination(arrayOfColumnLenghts) {
-    let arrayOfsubmatrixAreas = []
+  calcPossibleAreasCombination(arrayOfColumnLenghts) {
+    let possibleAreas = []
     const maxColumnLength = Math.max(...arrayOfColumnLenghts)
-    for (let i = 0; i < maxColumnLength + 1; i++) {
-      let elementSeriesLength = 0
-      for (let j = 0; j < arrayOfColumnLenghts.length; j++) {
-        if (arrayOfColumnLenghts[j] >= i) {
-          elementSeriesLength += 1
-        } else {
-          arrayOfsubmatrixAreas.push(i * elementSeriesLength)
-          elementSeriesLength = 0
-        }
-      }
-      if (elementSeriesLength !== 1) {
-        arrayOfsubmatrixAreas.push(i * elementSeriesLength)
-      }
+    for (let i = 1; i < maxColumnLength + 1; i++) {
+      const possibleAreasForColumnLength = this.calcPossibleAreaForColumnLength(
+        arrayOfColumnLenghts,
+        i,
+      )
+      possibleAreas.push(...possibleAreasForColumnLength)
     }
-    return arrayOfsubmatrixAreas
+    return possibleAreas
+  }
+
+  calcPossibleAreaForColumnLength(columnLengthsRow, columnLengths) {
+    let possibleAreasForColumnLength = []
+    let elementSeriesLength = 0
+    columnLengthsRow.forEach((element) => {
+      if (element >= columnLengths) {
+        elementSeriesLength += 1
+      } else {
+        possibleAreasForColumnLength.push(columnLengths * elementSeriesLength)
+        elementSeriesLength = 0
+      }
+    })
+    if (elementSeriesLength !== 1) {
+      possibleAreasForColumnLength.push(columnLengths * elementSeriesLength)
+    }
+    return possibleAreasForColumnLength
   }
 }
 
