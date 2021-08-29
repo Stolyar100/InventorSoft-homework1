@@ -5,8 +5,8 @@ class TaskService {
         this.countColumnLength(matrix, rowIndex, rowItemIndex),
       ),
     )
-    const submatrixAreasMatrix = columnLengthsMatrix.map(
-      this.calcPossibleAreasCombination,
+    const submatrixAreasMatrix = columnLengthsMatrix.map((columnLengthsRow) =>
+      this.calcPossibleAreasCombination(columnLengthsRow),
     )
     console.log(submatrixAreasMatrix)
   }
@@ -43,11 +43,13 @@ class TaskService {
       if (element >= columnLengths) {
         elementSeriesLength += 1
       } else {
-        possibleAreasForColumnLength.push(columnLengths * elementSeriesLength)
+        if (elementSeriesLength > 0) {
+          possibleAreasForColumnLength.push(columnLengths * elementSeriesLength)
+        }
         elementSeriesLength = 0
       }
     })
-    if (elementSeriesLength !== 1) {
+    if (elementSeriesLength > 0) {
       possibleAreasForColumnLength.push(columnLengths * elementSeriesLength)
     }
     return possibleAreasForColumnLength
