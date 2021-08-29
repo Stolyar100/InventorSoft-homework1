@@ -1,4 +1,4 @@
-import TaskService from './services/task-service.mjs'
+import TaskService from './services/task-service.js'
 const form = document.forms.matrix
 
 form.addEventListener('submit', formSubmitHandler)
