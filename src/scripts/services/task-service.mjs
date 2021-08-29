@@ -1,14 +1,11 @@
 class TaskService {
-  calcMaxSubmatrixArea(matrix) {
+  calcColumnLengthsMatrix(matrix) {
     const columnLengthsMatrix = matrix.map((row, rowIndex, matrix) =>
       row.map((rowItem, rowItemIndex) =>
         this.countColumnLength(matrix, rowIndex, rowItemIndex),
       ),
     )
-    const submatrixAreasMatrix = columnLengthsMatrix.map((columnLengthsRow) =>
-      this.calcPossibleAreasCombination(columnLengthsRow),
-    )
-    console.log(submatrixAreasMatrix)
+    return columnLengthsMatrix
   }
 
   countColumnLength(matrix, rowIndex, columnIndex) {
@@ -21,6 +18,13 @@ class TaskService {
       }
     }
     return columnLengths
+  }
+
+  calcPossibleAreasMatrix(columnLengthsMatrix) {
+    const possibleAreasMatrix = columnLengthsMatrix.map((columnLengthsRow) =>
+      this.calcPossibleAreasCombination(columnLengthsRow),
+    )
+    return possibleAreasMatrix
   }
 
   calcPossibleAreasCombination(arrayOfColumnLenghts) {
@@ -53,6 +57,12 @@ class TaskService {
       possibleAreasForColumnLength.push(columnLengths * elementSeriesLength)
     }
     return possibleAreasForColumnLength
+  }
+
+  findMaxFromMatrix(possibleAreasMatrix) {
+    const possibleAreasArray = [].concat(...possibleAreasMatrix)
+    const maxFromMatrix = Math.max(...possibleAreasArray)
+    return maxFromMatrix
   }
 }
 

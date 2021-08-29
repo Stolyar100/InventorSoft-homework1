@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Task1</title>
+  <link rel="stylesheet" href="./src/styles/style.css">
 </head>
+
 <body>
   <form name="matrix">
     <input type="text" name="matrixParameter">
@@ -14,11 +17,42 @@
   <div>
     <h3>Just leave it here, because quotes in slack look like this: “”</h3>
     <ul>
-      <li>["10100", "10111", "11111", "10010"]</li>
-      <li>["1011", "0011", "0111", "1111"]</li>
-      <li>["101", "111", "001"]</li>
+      <li>
+        <p>["10100", "10111", "11111", "10010"]</p>
+        <p>Output: 6</p>
+      </li>
+      <li>
+        <p>["1011", "0011", "0111", "1111"]</p>
+        <p>Output: 8</p>
+      </li>
+      <li>
+        <p>["101", "111", "001"]</p>
+        <p>Output: 3</p>
+      </li>
     </ul>
+  </div>
+  <div id="solving">
+    <div id="step1">
+      <h2>Step 1</h2>
+      <table id="originalMatrix"></table>
+      <table id="columnLengthMatrix"></table>
+      <p>For the first step, my algorithm generates a new matrix where every element represents the length of a column
+        which starts from the original one element. New Matrix helps us to see submatrix of '1' as it is just series of
+        column length that higher than 0</p>
+    </div>
+    <div id="step2">
+      <h2>Step 2</h2>
+      <table id="possibleAreasMatrix"></table>
+      <p>For the second step, my algorithm generates 2D array where every row contains all possible
+        submatrix combination in an corresponding row of the column length matrix</p>
+    </div>
+    <div id="step3">
+      <h2>Step 3</h2>
+      <p>The third step is the easiest one, it's just finding max value from previous array</p>
+      <h1 id="result"></h1>
+    </div>
   </div>
   <script type="module" src="./src/scripts/index.mjs" />
 </body>
+
 </html>

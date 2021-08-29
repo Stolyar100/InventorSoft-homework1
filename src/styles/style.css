@@ -1,0 +1,17 @@
+table {
+  border: 3px solid black;
+  border-collapse: collapse;
+  margin-bottom: 5px;
+}
+
+td {
+  border: 1px solid black;
+  padding: 7px;
+  width: 15px;
+  height: 15px;
+  text-align: center;
+}
+
+.bold {
+  font-weight: 600;
+}
