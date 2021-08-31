@@ -57,7 +57,7 @@ class TaskService {
         arrayOfColumnLenghts,
         i,
       )
-      //  pushes areas of all possible submatrix with height === columnLengths in general array
+      // pushes areas of all possible submatrix with height === columnLengths in general array
       possibleAreas.push(...possibleAreasForColumnLength)
     }
     return possibleAreas
@@ -77,7 +77,7 @@ class TaskService {
       if (element >= columnLengths) {
         elementSeriesLength += 1 // increase submatrix width counter
       } else {
-        //  checks if previous elements creates series(which in the original
+        // checks if previous elements creates series(which in the original
         // matrix is submatrix with size columnLengths x elementSeriesLength)
         if (elementSeriesLength > 0) {
           possibleAreasForColumnLength.push(columnLengths * elementSeriesLength) // pushes current submatrix area to list
@@ -92,7 +92,7 @@ class TaskService {
   }
 
   findMaxFromMatrix(possibleAreasMatrix) {
-    const possibleAreasArray = [].concat(...possibleAreasMatrix) //  converts 2D array to 1D
+    const possibleAreasArray = [].concat(...possibleAreasMatrix) // converts 2D array to 1D
     const maxFromMatrix = Math.max(...possibleAreasArray) // finds max value from 1D array
     return maxFromMatrix
   }

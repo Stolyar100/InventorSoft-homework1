@@ -13,10 +13,10 @@ function formSubmitHandler(e) {
 }
 
 function solveProblem(matrix) {
-  const columnLengthsMatrix = TaskService.calcColumnLengthsMatrix(matrix)
+  const columnLengthsMatrix = TaskService.calcColumnLengthsMatrix(matrix) // step 1
   const possibleAreasMatrix =
-    TaskService.calcPossibleAreasMatrix(columnLengthsMatrix)
-  const maxSubmatrixArea = TaskService.findMaxFromMatrix(possibleAreasMatrix)
+    TaskService.calcPossibleAreasMatrix(columnLengthsMatrix) // step 2
+  const maxSubmatrixArea = TaskService.findMaxFromMatrix(possibleAreasMatrix) // step 3
 
   printTable('originalMatrix', matrix)
   printTable('columnLengthMatrix', columnLengthsMatrix)
